@@ -6,10 +6,13 @@ import NotFound from '@/modules/shared/pages/NotFound.vue'*/
 import {createRouter, createWebHashHistory} from 'vue-router'
 
 const routes = [
+    // Redireccionado principal
     {path: '/', redirect: '/pokemons'},
+
+    // Pokemon Layout
     {path: '/pokemons', name: 'pokemons', component: () => import(/*webpackChunkName: "PokemonLayout"*/ '@/modules/pokemon/layouts/PokemonLayout.vue'),
         children: [
-            {path: 'home', name: 'pokemon-home',component: () => import(/*webpackChunkName: "PokemonList"*/ '@/modules/pokemon/pages/PokemonList.vue')},
+            {path: 'home', name: 'pokemon-home', component: () => import(/*webpackChunkName: "PokemonList"*/ '@/modules/pokemon/pages/PokemonList.vue')},
             {path: 'about', name: 'pokemon-about', component: () => import(/*webpackChunkName: "PokemonAbout"*/ '@/modules/pokemon/pages/PokemonAbout.vue')},
             {path: 'pokemon/:id', name: 'pokemon-id',component: () => import(/*webpackChunkName: "Pokemon"*/ '@/modules/pokemon/pages/Pokemon.vue'),
                 props: (route) => {
@@ -20,6 +23,17 @@ const routes = [
             { path: '', redirect: {name: 'pokemon-home'}},
         ]
     },
+
+    // Dragon Ball Z Layout
+    {path: '/dbz', name: 'dbz', component: () => import(/*webpackChunkName: "DBZLayout"*/ '@/modules/dbz/layouts/DragonBallLayout.vue'),
+        children: [
+            {path: 'home', name: 'dbz-home', component: () => import(/*webpackChunkName: "CharacterList"*/ '@/modules/dbz/pages/CharacterList.vue')},
+            {path: 'about', name: 'dbz-about', component: () => import(/*webpackChunkName: "DBZAbout"*/ '@/modules/dbz/pages/CharacterAbout.vue')},
+            { path: '', redirect: {name: 'dbz-home'}},
+        ]
+    },
+
+    // Error de página
     {path: '/:pathMatch(.*)*', component: () => import(/*webpackChunkName: "NotFound"*/ '@/modules/shared/pages/NotFound.vue')},
 ]
 
