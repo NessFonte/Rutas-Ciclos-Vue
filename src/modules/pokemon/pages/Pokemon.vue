@@ -1,5 +1,5 @@
 <template>
-    <h1>Pokemon: <span>#{{ id }}</span></h1>
+    <h2>Pokemon: <span>#{{ id }}</span></h2>
     <div v-if="pokemon">
     <img :src="pokemon.sprites.front_default" :alt="pokemon.name"></div>
 </template>

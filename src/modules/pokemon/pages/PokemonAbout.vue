@@ -1,7 +1,7 @@
 <template>
-    <h1>About Pokemon Page</h1>
+    <h2>About Pokemon Page</h2>
     <hr>
-    <h2>{{ name }}</h2>
+    <h3>{{ name }}</h3>
     <button @click="changeName">Cambiar nombre</button>
 </template>
 

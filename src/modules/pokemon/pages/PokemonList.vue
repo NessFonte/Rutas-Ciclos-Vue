@@ -1,3 +1,3 @@
 <template>
-    <h1>List Pokemon Page</h1>
+    <h2>List Pokemon Page</h2>
 </template>
