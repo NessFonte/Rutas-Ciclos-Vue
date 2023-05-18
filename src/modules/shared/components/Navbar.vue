@@ -18,4 +18,8 @@ div a {
     margin: 0 10px;
 }
 
+div .router-link-exact-active {
+    color: #42b983;
+}
+
 </style>
