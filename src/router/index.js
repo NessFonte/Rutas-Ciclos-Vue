@@ -4,6 +4,7 @@ import Pokemon from '@/modules/pokemon/pages/Pokemon.vue'
 import NotFound from '@/modules/shared/pages/NotFound.vue'*/
 
 import {createRouter, createWebHashHistory} from 'vue-router'
+import isAuthenticateGuard from './auth-guard'
 
 const routes = [
     // Redireccionado principal
@@ -25,7 +26,7 @@ const routes = [
     },
 
     // Dragon Ball Z Layout
-    {path: '/dbz', name: 'dbz', component: () => import(/*webpackChunkName: "DBZLayout"*/ '@/modules/dbz/layouts/DragonBallLayout.vue'),
+    {path: '/dbz', name: 'dbz',beforeEnter: [isAuthenticateGuard], component: () => import(/*webpackChunkName: "DBZLayout"*/ '@/modules/dbz/layouts/DragonBallLayout.vue'),
         children: [
             {path: 'home', name: 'dbz-home', component: () => import(/*webpackChunkName: "CharacterList"*/ '@/modules/dbz/pages/CharacterList.vue')},
             {path: 'about', name: 'dbz-about', component: () => import(/*webpackChunkName: "DBZAbout"*/ '@/modules/dbz/pages/CharacterAbout.vue')},
@@ -41,5 +42,31 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes,
 })
+
+// Guard Global - Sincrono
+/*router.beforeEach((to, from, next) => {
+    console.log({to, from, next})
+    next()
+})*/
+
+/*const canAccess = () => {
+    return new Promise( resolve => {
+
+        const random =Math.random() * 100
+        if(random > 50) {
+            console.log('Autenticado - canAccess')
+            resolve(true)
+        }
+        else {
+            console.log(random, 'Bloqueado por el beforeEach Guard - canAccess')
+            resolve(false)
+        }
+    })
+}
+
+router.beforeEach( async(to, from, next) => {
+    const authorized = await canAccess()
+    authorized ? next() : next({name: 'pokemon-home'})
+})*/
 
 export default router
